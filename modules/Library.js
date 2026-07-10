@@ -33,10 +33,10 @@ class Library {
         if(typeof publication.isAvailable === `function`){
             if(publication.isAvailable()){
                 publication.borrow()
-                member.borrowBook(publication)
+                member.borrowedBook(publication)
                 console.log(`${publication.title}, ${member.name} adlı üyeye ödünç verildi.`)
             }else{
-                console.log(`${publication.title} şu anda yayında değil`)
+                console.log(`${publication.title} şu anda müsait değil`)
             }
         }else{
             console.log(`${publication.title} türündeki yayınlar ödünç verilemez`)
@@ -48,8 +48,12 @@ class Library {
             this.publications.forEach(pub => {
                 const details = pub.getDetails()
                 const status  = (typeof pub.isAvailable === "function") ? ` Durum: ${pub.isAvailable() ? `Mevcut` : `ödünç verildi`}` : ""
-                console.log(``)
+                console.log(`ID: ${pub.id} ${details}${status}`)
+                console.log("----------------------------------------------------------")
     
         })
     }
 }
+
+
+module.exports = Library
